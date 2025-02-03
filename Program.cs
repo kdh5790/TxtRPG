@@ -7,9 +7,9 @@ namespace TxtRPG
 {
     public class Program
     {
-        static public DataManager dataManager = new DataManager();
-        static public DungeonManager dungeonManager = new DungeonManager();
-        static public ItemManager itemManager = new ItemManager();
+        static private DataManager dataManager = new DataManager();
+        static private DungeonManager dungeonManager = new DungeonManager();
+        static private ItemManager itemManager = new ItemManager();
 
         public enum ItemType
         {
