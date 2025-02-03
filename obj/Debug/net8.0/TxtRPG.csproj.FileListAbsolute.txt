@@ -1,0 +1,17 @@
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\bin\Debug\net8.0\TxtRPG.exe
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\bin\Debug\net8.0\TxtRPG.deps.json
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\bin\Debug\net8.0\TxtRPG.runtimeconfig.json
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\bin\Debug\net8.0\TxtRPG.dll
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\bin\Debug\net8.0\TxtRPG.pdb
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\TxtRPG.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\TxtRPG.AssemblyInfoInputs.cache
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\TxtRPG.AssemblyInfo.cs
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\TxtRPG.csproj.CoreCompileInputs.cache
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\TxtRPG.dll
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\refint\TxtRPG.dll
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\TxtRPG.pdb
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\TxtRPG.genruntimeconfig.cache
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\ref\TxtRPG.dll
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\TxtRPG.csproj.AssemblyReference.cache
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\TxtRPG.csproj.Up2Date

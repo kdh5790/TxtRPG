@@ -1,0 +1,12 @@
+{
+  "Name": "fewfew",
+  "Job": "전사",
+  "Level": 1,
+  "Attack": 10.0,
+  "Defence": 5,
+  "Health": 100,
+  "Gold": 900,
+  "ClearCount": 0,
+  "EquipWeapon": "낡은 검        ",
+  "EquipArmor": " "
+}

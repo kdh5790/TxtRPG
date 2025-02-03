@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "FY4XlsyKeMU=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\k_010\\source\\repos\\Csharp Week1\\TxtRPG\\TxtRPG.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\k_010\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
