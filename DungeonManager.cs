@@ -11,7 +11,6 @@ namespace TxtRPG
         private ScriptManager scriptManager = new ScriptManager();
         Random random = new Random();
 
-
         public void DungeonLobby()
         {
             while (true)
