@@ -76,7 +76,6 @@ namespace TxtRPG
 
                 if (int.TryParse(Console.ReadLine(), out num))
                 {
-
                     if (num == 0)
                         MainLobby();
 
@@ -183,7 +182,6 @@ namespace TxtRPG
             }
         }
 
-
         // 장비 구매
         public void BuyItem()
         {
@@ -210,14 +208,12 @@ namespace TxtRPG
                         continue;
                     }
 
-
                     if (items[num - 1].IsBuy)
                     {
                         Console.WriteLine($"이미 구매한 아이템입니다. 다시 입력해주세요.");
                         Thread.Sleep(1000);
                         continue;
                     }
-
 
                     if (items[num - 1].Price <= player.Gold)
                     {
@@ -255,10 +251,8 @@ namespace TxtRPG
         // 장비 판매
         public void SellItem()
         {
-
             // 판매 가능한 장비 저장 리스트
             List<Item> tempItemList = new List<Item>();
-
 
             for (int i = 0; i < items.Count; i++)
             {
@@ -368,7 +362,6 @@ namespace TxtRPG
                     Console.WriteLine($"[현재 보유 중인 장비 목록]");
                     break;
             }
-
 
             int num = 0;
 

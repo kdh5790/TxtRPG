@@ -33,16 +33,27 @@ namespace TxtRPG
 
         public class Character
         {
-            public string Name = "스파르타";
-            public string Job = "전사";
-            public int Level = 1;
-            public float Attack = 10;
-            public int Deffence = 5;
-            public int Health = 100;
-            public int Gold = 1500;
-            public int ClearCount = 0;
-            public Item EquipWeapon = new Item();
-            public Item EquipArmor = new Item();
+            private string name = "스파르타";
+            private string job = "전사";
+            private int level = 1;
+            private float attack = 10;
+            private int defence = 5;
+            private int health = 100;
+            private int gold = 1500;
+            private int clearCount = 0;
+            private Item equipWeapon = new Item();
+            private Item equipArmor = new Item();
+
+            public string Name { get { return name; } set { name = value; } }
+            public string Job { get { return job; } set { job = value; } }
+            public int Level { get { return level; } set { level = value; } }
+            public float Attack { get { return attack; } set { attack = value; } }
+            public int Defence { get { return defence; } set { defence = value; } }
+            public int Health { get { return health; }  set { health = value; } }
+            public int Gold { get { return gold; } set { gold = value; } }
+            public int ClearCount { get { return clearCount; } set { clearCount = value; } }
+            public Item EquipWeapon { get { return new Item(equipWeapon); } set { new Item(value); } }
+            public Item EquipArmor { get { return new Item(equipArmor); } set { new Item(value); } }
         }
 
         public class Item

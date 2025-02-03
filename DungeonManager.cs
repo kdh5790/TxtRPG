@@ -64,7 +64,6 @@ namespace TxtRPG
         {
             Console.Clear();
 
-
             int reward = 0;
             string difficultyStr = "";
 
@@ -91,6 +90,12 @@ namespace TxtRPG
             int rnd = random.Next(0, 100);
 
             // 결과 확인 전 진행 중 텍스트 출력
+            Console.Clear();
+            Console.WriteLine($"ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+            Console.WriteLine($"");
+            Console.WriteLine($"         던전 진행 중...");
+            Console.WriteLine($"");
+            Console.WriteLine($"ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 
             Thread.Sleep(1500);
 
@@ -98,7 +103,7 @@ namespace TxtRPG
 
             // 던전 공략 실패
             // 40%에 걸리고 권장 방어력보다 낮을 경우 던전 실패
-            if (rnd < 40 && player.Deffence + player.EquipArmor.Value < (int)difficulty)
+            if (rnd < 40 && player.Defence + player.EquipArmor.Value < (int)difficulty)
             {
                 Console.WriteLine($"던전 공략에 실패했습니다.");
                 Console.WriteLine($"던전 공략 실패로 인해 체력이 현재 체력의 절반으로 감소합니다.");
@@ -118,11 +123,11 @@ namespace TxtRPG
                 // 체력 감소량 랜덤값 가져오기
                 // 권장 방어력보다 높을 시 : (20 - (플레이어 방어력 - 권장 방어력)) ~ (35 - (플레이어 방어력 - 권장 방어력))
                 // 권장 방어력보다 높을 시 : (20 - (권장 방어력 - 플레이어 방어력)) ~ (35 - (권장 방어력 - 플레이어 방어력))
-                if (player.Deffence >= (int)difficulty)
-                    rnd = random.Next(20 - (player.Deffence - (int)difficulty), 36 - (player.Deffence - (int)difficulty));
+                if (player.Defence >= (int)difficulty)
+                    rnd = random.Next(20 - (player.Defence - (int)difficulty), 36 - (player.Defence - (int)difficulty));
 
-                else if (player.Deffence < (int)difficulty)
-                    rnd = random.Next(20 - ((int)difficulty - player.Deffence), 36 - ((int)difficulty - player.Deffence));
+                else if (player.Defence < (int)difficulty)
+                    rnd = random.Next(20 - ((int)difficulty - player.Defence), 36 - ((int)difficulty - player.Defence));
 
                 // 감소 전 체력 출력 용 임시변수
                 int originalHealth = player.Health;
@@ -165,11 +170,8 @@ namespace TxtRPG
                 Console.WriteLine($"{difficultyStr}던전 공략에 성공했습니다.");
                 Console.WriteLine($"");
                 Console.WriteLine($"[공략 결과]");
-
                 Console.WriteLine($"체력 {originalHealth} => {player.Health}");
-
                 Console.WriteLine($"골드 {originalGold} => {player.Gold}");
-
                 Console.WriteLine($"");
                 Console.WriteLine($"0. 나가기");
                 Console.WriteLine($"");
@@ -208,7 +210,7 @@ namespace TxtRPG
             player.ClearCount = 0;
 
             player.Attack = player.Attack + (0.5f * (player.Level - 1));
-            player.Deffence = player.Deffence + (1 + (player.Level - 1));
+            player.Defence = player.Defence + (1 + (player.Level - 1));
         }
     }
 }

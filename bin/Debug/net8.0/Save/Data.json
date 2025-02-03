@@ -5,8 +5,8 @@
   "Attack": 10.0,
   "Defence": 5,
   "Health": 100,
-  "Gold": 900,
+  "Gold": 1500,
   "ClearCount": 0,
-  "EquipWeapon": "낡은 검        ",
+  "EquipWeapon": " ",
   "EquipArmor": " "
 }

@@ -42,7 +42,7 @@ namespace TxtRPG
                 new JProperty("Job", characterData.Job),
                 new JProperty("Level", characterData.Level),
                 new JProperty("Attack", characterData.Attack),
-                new JProperty("Defence", characterData.Deffence),
+                new JProperty("Defence", characterData.Defence),
                 new JProperty("Health", characterData.Health),
                 new JProperty("Gold", characterData.Gold),
                 new JProperty("ClearCount", characterData.ClearCount),
@@ -113,7 +113,6 @@ namespace TxtRPG
         // 불러온 데이터 파싱 후 게임 내 적용
         public Character DataParsing(Character load)
         {
-
             string data = File.ReadAllText(filePath);
             JObject playerData = JObject.Parse(data);
 
@@ -121,7 +120,7 @@ namespace TxtRPG
             load.Job = playerData["Job"].ToString();
             load.Level = int.Parse(playerData["Level"].ToString());
             load.Attack = int.Parse(playerData["Attack"].ToString());
-            load.Deffence = int.Parse(playerData["Defence"].ToString());
+            load.Defence = int.Parse(playerData["Defence"].ToString());
             load.Health = int.Parse(playerData["Health"].ToString());
             load.Gold = int.Parse(playerData["Gold"].ToString());
             load.ClearCount = int.Parse(playerData["ClearCount"].ToString());
