@@ -53,21 +53,21 @@ namespace TxtRPG
             File.WriteAllText(filePath, data.ToString());
 
             // 아이템 보유 정보 저장
-            Dictionary<string, bool> itemsDic = new Dictionary<string, bool>();
+            Dictionary<string, bool> itemsDict = new Dictionary<string, bool>();
 
             for (int i = 0; i < items.Count; i++)
             {
-                itemsDic.Add(items[i].Name, items[i].IsBuy);
+                itemsDict.Add(items[i].Name, items[i].IsBuy);
             }
 
-            string json = JsonConvert.SerializeObject(itemsDic);
+            string json = JsonConvert.SerializeObject(itemsDict);
             File.WriteAllText(itemFilePath, json);
         }
 
         // 세이브 파일 불러오기
         public Character LoadData()
         {
-            Character load = new Character();
+            Character loadCharacterData = new Character();
 
             while (true)
             {
@@ -79,13 +79,13 @@ namespace TxtRPG
                     Console.WriteLine("2. 처음부터 시작");
                     Console.Write(">> ");
 
-                    if (int.TryParse(Console.ReadLine(), out int num))
+                    if (int.TryParse(Console.ReadLine(), out int selectNumber))
                     {
-                        switch (num)
+                        switch (selectNumber)
                         {
                             case 1:
-                                load = DataParsing(load);
-                                return load;
+                                loadCharacterData = DataParsing(loadCharacterData);
+                                return loadCharacterData;
                             case 2:
                                 Start();
                                 break;
@@ -111,19 +111,19 @@ namespace TxtRPG
         }
 
         // 불러온 데이터 파싱 후 게임 내 적용
-        public Character DataParsing(Character load)
+        public Character DataParsing(Character loadCharacterData)
         {
             string data = File.ReadAllText(filePath);
             JObject playerData = JObject.Parse(data);
 
-            load.Name = playerData["Name"].ToString();
-            load.Job = playerData["Job"].ToString();
-            load.Level = int.Parse(playerData["Level"].ToString());
-            load.Attack = int.Parse(playerData["Attack"].ToString());
-            load.Defence = int.Parse(playerData["Defence"].ToString());
-            load.Health = int.Parse(playerData["Health"].ToString());
-            load.Gold = int.Parse(playerData["Gold"].ToString());
-            load.ClearCount = int.Parse(playerData["ClearCount"].ToString());
+            loadCharacterData.Name = playerData["Name"].ToString();
+            loadCharacterData.Job = playerData["Job"].ToString();
+            loadCharacterData.Level = int.Parse(playerData["Level"].ToString());
+            loadCharacterData.Attack = int.Parse(playerData["Attack"].ToString());
+            loadCharacterData.Defence = int.Parse(playerData["Defence"].ToString());
+            loadCharacterData.Health = int.Parse(playerData["Health"].ToString());
+            loadCharacterData.Gold = int.Parse(playerData["Gold"].ToString());
+            loadCharacterData.ClearCount = int.Parse(playerData["ClearCount"].ToString());
 
             string weaponName = playerData["EquipWeapon"].ToString();
             string armorName = playerData["EquipArmor"].ToString();
@@ -132,11 +132,11 @@ namespace TxtRPG
             {
                 if (items[i].Name == weaponName)
                 {
-                    load.EquipWeapon = items[i];
+                    loadCharacterData.EquipWeapon = items[i];
                 }
                 else if (items[i].Name == armorName)
                 {
-                    load.EquipArmor = items[i];
+                    loadCharacterData.EquipArmor = items[i];
                 }
             }
 
@@ -151,7 +151,7 @@ namespace TxtRPG
                 items[i].IsBuy = itemDic[items[i].Name];
             }
 
-            return load;
+            return loadCharacterData;
         }
     }
 }

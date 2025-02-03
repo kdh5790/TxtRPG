@@ -178,9 +178,9 @@ namespace TxtRPG
                 Console.WriteLine($"원하시는 행동을 입력해주세요.");
                 Console.Write($">> ");
 
-                if (int.TryParse(Console.ReadLine(), out int num))
+                if (int.TryParse(Console.ReadLine(), out int selectNumber))
                 {
-                    switch (num)
+                    switch (selectNumber)
                     {
                         case 0:
                             Console.WriteLine("잠시 후 로비로 이동합니다.");

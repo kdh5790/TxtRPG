@@ -8,6 +8,8 @@ namespace TxtRPG
 {
     public class ItemManager : Program
     {
+        private float sellPrice = 0.85f;
+
         public void Inventory()
         {
             Console.Clear();
@@ -17,7 +19,7 @@ namespace TxtRPG
             Console.WriteLine($"");
             Console.WriteLine($"[아이템 목록]");
 
-            int num = 0;
+            int selectNumber = 0;
 
             while (true)
             {
@@ -29,29 +31,29 @@ namespace TxtRPG
                 {
                     if (i.IsBuy)
                     {
-                        num++;
+                        selectNumber++;
 
                         if (i.Type == ItemType.Weapon)
                         {
                             if (i.Name == player.EquipWeapon.Name)
-                                Console.WriteLine($"- ({num})[E]{i.Name} | 공격력 +{i.Value,2}  |  {i.Info} ");
+                                Console.WriteLine($"- ({selectNumber})[E]{i.Name} | 공격력 +{i.Value,2}  |  {i.Info} ");
                             else
-                                Console.WriteLine($"- ({num})   {i.Name} | 공격력 +{i.Value,2}  |  {i.Info} ");
+                                Console.WriteLine($"- ({selectNumber})   {i.Name} | 공격력 +{i.Value,2}  |  {i.Info} ");
 
                         }
                         else if (i.Type == ItemType.Armor)
                         {
                             if (i.Name == player.EquipArmor.Name)
-                                Console.WriteLine($"- ({num})[E]{i.Name} | 방어력 +{i.Value,2}  |  {i.Info} ");
+                                Console.WriteLine($"- ({selectNumber})[E]{i.Name} | 방어력 +{i.Value,2}  |  {i.Info} ");
                             else
-                                Console.WriteLine($"- ({num})   {i.Name} | 방어력 +{i.Value,2}  |  {i.Info} ");
+                                Console.WriteLine($"- ({selectNumber})   {i.Name} | 방어력 +{i.Value,2}  |  {i.Info} ");
                         }
                         tempItemList.Add(i);
                     }
                 }
 
                 // 보유중인 장비가 없다면 로비로 이동
-                if (num == 0)
+                if (selectNumber == 0)
                 {
                     Console.WriteLine($"");
 
@@ -72,14 +74,14 @@ namespace TxtRPG
                 Console.WriteLine($"원하시는 행동을 입력해주세요");
                 Console.Write($">> ");
 
-                num = 0;
+                selectNumber = 0;
 
-                if (int.TryParse(Console.ReadLine(), out num))
+                if (int.TryParse(Console.ReadLine(), out selectNumber))
                 {
-                    if (num == 0)
+                    if (selectNumber == 0)
                         MainLobby();
 
-                    else if (num > tempItemList.Count)
+                    else if (selectNumber > tempItemList.Count)
                     {
                         Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
                         Thread.Sleep(1000);
@@ -89,7 +91,7 @@ namespace TxtRPG
                     else
                     {
                         // 선택한 장비에 해당하는 인덱스 찾기
-                        int index = items.FindIndex(i => i.Name == tempItemList[num - 1].Name);
+                        int index = items.FindIndex(i => i.Name == tempItemList[selectNumber - 1].Name);
 
                         // 장비 타입 확인 후 장착 및 해제 실행
                         switch (items[index].Type)
@@ -151,9 +153,9 @@ namespace TxtRPG
                 Console.WriteLine($"원하시는 행동을 입력해주세요");
                 Console.Write($">> ");
 
-                if (int.TryParse(Console.ReadLine(), out int num))
+                if (int.TryParse(Console.ReadLine(), out int selectNumber))
                 {
-                    switch (num)
+                    switch (selectNumber)
                     {
                         case 0:
                             return;
@@ -196,35 +198,35 @@ namespace TxtRPG
                 Console.WriteLine($"원하시는 행동을 입력해주세요.");
                 Console.Write($">> ");
 
-                if (int.TryParse(Console.ReadLine(), out int num))
+                if (int.TryParse(Console.ReadLine(), out int selectNumber))
                 {
-                    if (num == 0)
+                    if (selectNumber == 0)
                         MainLobby();
 
-                    else if (num > items.Count)
+                    else if (selectNumber > items.Count)
                     {
                         Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
                         Thread.Sleep(1000);
                         continue;
                     }
 
-                    if (items[num - 1].IsBuy)
+                    if (items[selectNumber - 1].IsBuy)
                     {
                         Console.WriteLine($"이미 구매한 아이템입니다. 다시 입력해주세요.");
                         Thread.Sleep(1000);
                         continue;
                     }
 
-                    if (items[num - 1].Price <= player.Gold)
+                    if (items[selectNumber - 1].Price <= player.Gold)
                     {
                         Console.Clear();
 
-                        items[num - 1].IsBuy = true;
-                        player.Gold -= items[num - 1].Price;
+                        items[selectNumber - 1].IsBuy = true;
+                        player.Gold -= items[selectNumber - 1].Price;
 
                         Console.WriteLine($"");
                         Console.WriteLine($"");
-                        Console.WriteLine($"장비 {items[num - 1].Name}을(를) 구매하였습니다.");
+                        Console.WriteLine($"장비 {items[selectNumber - 1].Name}을(를) 구매하였습니다.");
                         Console.WriteLine($"잠시 후 로비로 돌아갑니다.");
                         Thread.Sleep(2000);
                         MainLobby();
@@ -268,7 +270,6 @@ namespace TxtRPG
 
                 Console.WriteLine($"");
                 Console.WriteLine($"");
-                Console.WriteLine($"");
                 Console.WriteLine($"장비 판매 시 구매 가격의 85% 가격으로 판매하게 됩니다.");
                 Console.WriteLine($"");
                 Console.WriteLine($"판매하실 장비의 번호를 입력해주세요.");
@@ -277,14 +278,14 @@ namespace TxtRPG
                 Console.WriteLine($"원하시는 행동을 입력해주세요.");
                 Console.Write($">> ");
 
-                if (int.TryParse(Console.ReadLine(), out int num))
+                if (int.TryParse(Console.ReadLine(), out int selectNumber))
                 {
-                    if (num == 0)
+                    if (selectNumber == 0)
                         MainLobby();
 
-                    else if (num > tempItemList.Count)
+                    else if (selectNumber > tempItemList.Count)
                     {
-                        Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요. fdsafdas");
+                        Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
                         Thread.Sleep(1000);
                         continue;
                     }
@@ -294,15 +295,15 @@ namespace TxtRPG
                         int temp = player.Gold;
 
                         // 판매하려는 장비의 이름과 일치하는 인덱스 찾기
-                        int index = items.FindIndex(i => i.Name == tempItemList[num - 1].Name);
+                        int index = items.FindIndex(i => i.Name == tempItemList[selectNumber - 1].Name);
 
                         // 플레이어 및 아이템 보유 상태 변경
-                        player.Gold += (int)(items[index].Price * 0.85f);
+                        player.Gold += (int)(items[index].Price * sellPrice);
                         items[index].IsBuy = false;
 
                         Console.Clear();
 
-                        Console.WriteLine($"장비 {items[index].Name}을/를 {(int)(items[index].Price * 0.85f)}G에 판매하였습니다.");
+                        Console.WriteLine($"장비 {items[index].Name}을/를 {(int)(items[index].Price * sellPrice)}G에 판매하였습니다.");
                         Console.WriteLine($"[소지 골드]");
                         Console.WriteLine($"{temp}G => {player.Gold}G");
                         Console.WriteLine($"");
@@ -327,13 +328,11 @@ namespace TxtRPG
         public void ShopScript(SelectShopType type)
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
 
             switch (type)
             {
                 case SelectShopType.Main:
                     Console.WriteLine($"상점");
-                    Console.ResetColor();
                     Console.WriteLine($"던전에서 사용 가능한 장비를 구매하거나 판매 할 수 있는 상점입니다.");
                     Console.WriteLine($"");
                     Console.WriteLine($"[보유 골드]");
@@ -343,7 +342,6 @@ namespace TxtRPG
                     break;
                 case SelectShopType.Buy:
                     Console.WriteLine($"장비 구매");
-                    Console.ResetColor();
                     Console.WriteLine($"던전에서 사용 가능한 장비를 구매 할 수 있습니다.");
                     Console.WriteLine($"");
                     Console.WriteLine($"[보유 골드]");
@@ -353,7 +351,6 @@ namespace TxtRPG
                     break;
                 case SelectShopType.Sell:
                     Console.WriteLine($"장비 판매");
-                    Console.ResetColor();
                     Console.WriteLine($"현재 보유하고 있는 장비를 판매 할 수 있습니다.");
                     Console.WriteLine($"");
                     Console.WriteLine($"[보유 골드]");
@@ -363,27 +360,27 @@ namespace TxtRPG
                     break;
             }
 
-            int num = 0;
+            int selectNumber = 0;
 
             if (type == SelectShopType.Main || type == SelectShopType.Buy)
             {
-                foreach (var i in items)
+                foreach (var item in items)
                 {
-                    num++;
-                    if (i.Type == ItemType.Weapon)
+                    selectNumber++;
+                    if (item.Type == ItemType.Weapon)
                     {
-                        Console.Write($"- ({num}){i.Name} | 공격력 +{i.Value,2}  |  {i.Info} |");
-                        if (!i.IsBuy)
-                            Console.WriteLine($" {i.Price,5} G");
+                        Console.Write($"- ({selectNumber}){item.Name} | 공격력 +{item.Value,2}  |  {item.Info} |");
+                        if (!item.IsBuy)
+                            Console.WriteLine($" {item.Price,5} G");
                         else
                             Console.WriteLine($" 보유 중");
 
                     }
                     else
                     {
-                        Console.Write($"- ({num}){i.Name} | 방어력 +{i.Value,2}  |  {i.Info}  |");
-                        if (!i.IsBuy)
-                            Console.WriteLine($" {i.Price,5} G");
+                        Console.Write($"- ({selectNumber}){item.Name} | 방어력 +{item.Value,2}  |  {item.Info}  |");
+                        if (!item.IsBuy)
+                            Console.WriteLine($" {item.Price,5} G");
                         else
                             Console.WriteLine($" 보유 중");
                     }
@@ -392,17 +389,16 @@ namespace TxtRPG
             }
             else
             {
-
-                foreach (var i in items)
+                foreach (var item in items)
                 {
-                    if (i.IsBuy)
+                    if (item.IsBuy)
                     {
-                        num++;
-                        Console.WriteLine($"- ({num}){i.Name} | 공격력 +{i.Value,2}  |  {i.Info} | {i.Price,5} G");
+                        selectNumber++;
+                        Console.WriteLine($"- ({selectNumber}){item.Name} | 공격력 +{item.Value,2}  |  {item.Info} | {item.Price,5} G");
                     }
                 }
 
-                if (num == 0)
+                if (selectNumber == 0)
                 {
                     Console.WriteLine($"");
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
