@@ -15,3 +15,4 @@ C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\ref\TxtRPG.dll
 C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\TxtRPG.csproj.AssemblyReference.cache
 C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\TxtRPG.csproj.Up2Date
+C:\Users\k_010\source\repos\Csharp Week1\TxtRPG\obj\Debug\net8.0\TxtRPG.sourcelink.json

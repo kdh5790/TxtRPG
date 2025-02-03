@@ -8,12 +8,12 @@ namespace TxtRPG
 {
     public class ItemManager : Program
     {
+        private ScriptManager scriptManager = new ScriptManager();
         private float sellPrice = 0.85f;
-
+        
         public void Inventory()
         {
             Console.Clear();
-
             Console.WriteLine($"인벤토리");
             Console.WriteLine($"보유 중인 장비를 관리 할 수 있습니다.");
             Console.WriteLine($"");
@@ -60,10 +60,7 @@ namespace TxtRPG
                     Console.WriteLine($"");
                     Console.WriteLine($"보유 중인 장비가 없습니다.");
                     Console.WriteLine($"");
-                    Console.WriteLine($"잠시 후 로비로 돌아갑니다.");
-
-                    Thread.Sleep(1000);
-                    MainLobby();
+                    scriptManager.JoinLobbyScript();
                 }
 
                 Console.WriteLine($"");
@@ -83,8 +80,7 @@ namespace TxtRPG
 
                     else if (selectNumber > tempItemList.Count)
                     {
-                        Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                        Thread.Sleep(1000);
+                        scriptManager.InvalidInputScript();
                         continue;
                     }
 
@@ -122,17 +118,12 @@ namespace TxtRPG
                         Console.WriteLine($"");
                         Console.WriteLine($"장비 장착 및 해제를 완료했습니다.");
                         Console.WriteLine($"");
-                        Console.WriteLine($"잠시 후 로비로 이동합니다.");
-                        Console.WriteLine($"");
-
-                        Thread.Sleep(1000);
-                        MainLobby();
+                        scriptManager.JoinLobbyScript();
                     }
                 }
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                    Thread.Sleep(1000);
+                    scriptManager.InvalidInputScript();
                     continue;
                 }
             }
@@ -169,16 +160,14 @@ namespace TxtRPG
                             break;
 
                         default:
-                            Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                            Thread.Sleep(1000);
+                            scriptManager.InvalidInputScript();
                             continue;
                     }
                 }
 
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                    Thread.Sleep(1000);
+                    scriptManager.InvalidInputScript();
                     continue;
                 }
             }
@@ -205,8 +194,7 @@ namespace TxtRPG
 
                     else if (selectNumber > items.Count)
                     {
-                        Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                        Thread.Sleep(1000);
+                        scriptManager.InvalidInputScript();
                         continue;
                     }
 
@@ -227,24 +215,21 @@ namespace TxtRPG
                         Console.WriteLine($"");
                         Console.WriteLine($"");
                         Console.WriteLine($"장비 {items[selectNumber - 1].Name}을(를) 구매하였습니다.");
-                        Console.WriteLine($"잠시 후 로비로 돌아갑니다.");
-                        Thread.Sleep(2000);
-                        MainLobby();
+                        scriptManager.JoinLobbyScript();
+                        return;
                     }
                     else
                     {
                         Console.WriteLine($"");
                         Console.WriteLine($"골드가 부족합니다.");
-                        Console.WriteLine($"잠시 후 로비로 돌아갑니다.");
-                        Thread.Sleep(2000);
-                        MainLobby();
+                        scriptManager.JoinLobbyScript();
+                        return;
                     }
                 }
 
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                    Thread.Sleep(1000);
+                    scriptManager.InvalidInputScript();
                     continue;
                 }
             }
@@ -285,8 +270,7 @@ namespace TxtRPG
 
                     else if (selectNumber > tempItemList.Count)
                     {
-                        Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                        Thread.Sleep(1000);
+                        scriptManager.InvalidInputScript();
                         continue;
                     }
                     else
@@ -307,18 +291,14 @@ namespace TxtRPG
                         Console.WriteLine($"[소지 골드]");
                         Console.WriteLine($"{temp}G => {player.Gold}G");
                         Console.WriteLine($"");
-                        Console.WriteLine($"잠시 후 로비로 이동합니다.");
-
-                        Thread.Sleep(2500);
-
-                        MainLobby();
+                        scriptManager.JoinLobbyScript();
+                        return;
                     }
                 }
 
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                    Thread.Sleep(1000);
+                    scriptManager.InvalidInputScript();
                     continue;
                 }
             }
@@ -401,14 +381,10 @@ namespace TxtRPG
                 if (selectNumber == 0)
                 {
                     Console.WriteLine($"");
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine($"현재 보유 중인 장비가 없습니다.");
                     Console.WriteLine($"");
-                    Console.WriteLine($"");
-                    Console.WriteLine($"잠시 후 상점 메인으로 돌아갑니다.");
-                    Console.ResetColor();
-                    Thread.Sleep(2000);
-                    Shop();
+                    scriptManager.JoinLobbyScript();
+                    return;
                 }
 
             }

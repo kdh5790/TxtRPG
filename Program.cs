@@ -10,6 +10,7 @@ namespace TxtRPG
         static private DataManager dataManager = new DataManager();
         static private DungeonManager dungeonManager = new DungeonManager();
         static private ItemManager itemManager = new ItemManager();
+        static private ScriptManager scriptManager = new ScriptManager();
 
         public enum ItemType
         {
@@ -156,16 +157,14 @@ namespace TxtRPG
                             Rest();
                             break;
                         default:
-                            Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                            Thread.Sleep(1000);
+                            scriptManager.InvalidInputScript();
                             continue;
                     }
                 }
 
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                    Thread.Sleep(1000);
+                    scriptManager.InvalidInputScript();
                     continue;
                 }
             }
@@ -213,16 +212,14 @@ namespace TxtRPG
                         case 0:
                             return;
                         default:
-                            Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                            Thread.Sleep(1000);
+                            scriptManager.InvalidInputScript();
                             continue;
                     }
                 }
 
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                    Thread.Sleep(1000);
+                    scriptManager.InvalidInputScript();
                     continue;
                 }
             }
@@ -271,9 +268,7 @@ namespace TxtRPG
                                 Console.WriteLine($"");
                                 Console.WriteLine($"Gold : {originalGold} => Gold : {player.Gold}");
                                 Console.WriteLine($"");
-                                Console.WriteLine($"잠시 후 로비로 돌아갑니다.");
-
-                                Thread.Sleep(1000);
+                                scriptManager.JoinLobbyScript();
                                 return;
                             }
 
@@ -282,9 +277,7 @@ namespace TxtRPG
                             {
                                 Console.WriteLine($"이미 체력이 최대치로 회복되어 있습니다.");
                                 Console.WriteLine($"휴식을 취하지 않습니다.");
-                                Console.WriteLine($"잠시 후 로비로 돌아갑니다.");
-
-                                Thread.Sleep(1000);
+                                scriptManager.JoinLobbyScript();
                                 return;
                             }
 
@@ -294,23 +287,19 @@ namespace TxtRPG
                                 Console.WriteLine($"골드가 부족합니다.");
                                 Console.WriteLine($"보유 골드 : {player.Gold}G");
                                 Console.WriteLine($"필요 골드 : 500G");
-                                Console.WriteLine($"잠시 후 로비로 돌아갑니다.");
-
-                                Thread.Sleep(1000);
+                                scriptManager.JoinLobbyScript();
                                 return;
                             }
 
                         default:
-                            Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                            Thread.Sleep(1000);
+                            scriptManager.InvalidInputScript();
                             continue;
                     }
                 }
 
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                    Thread.Sleep(1000);
+                    scriptManager.InvalidInputScript();
                     continue;
                 }
             }

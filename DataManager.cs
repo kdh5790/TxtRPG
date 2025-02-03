@@ -10,6 +10,8 @@ namespace TxtRPG
 {
     public class DataManager : Program
     {
+        private ScriptManager scriptManager = new ScriptManager();
+
         // 세이브관련 파일 위치, 파일명
         public const string folderPath = "./Save"; // 세이브 파일 저장 폴더
         public const string filePath = "./Save/Data.json"; // 플레이어 정보 세이브 파일명
@@ -73,6 +75,7 @@ namespace TxtRPG
             {
                 if (File.Exists("./Save/Data.json"))
                 {
+                    Console.Clear();
                     Console.WriteLine("저장 데이터가 존재합니다. 불러오시겠습니까?");
                     Console.WriteLine();
                     Console.WriteLine("1. 불러오기");
@@ -90,18 +93,14 @@ namespace TxtRPG
                                 Start();
                                 break;
                             default:
-                                Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                                Thread.Sleep(1000);
-                                Console.Clear();
+                                scriptManager.InvalidInputScript();
                                 continue;
                         }
                     }
                     
                     else
                     {
-                        Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                        Thread.Sleep(1000);
-                        Console.Clear();
+                        scriptManager.InvalidInputScript();
                         continue;
                     }
                 }

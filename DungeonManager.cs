@@ -8,7 +8,9 @@ namespace TxtRPG
 {
     public class DungeonManager : Program
     {
+        private ScriptManager scriptManager = new ScriptManager();
         Random random = new Random();
+
 
         public void DungeonLobby()
         {
@@ -44,14 +46,12 @@ namespace TxtRPG
                             break;
                         default:
                             continue;
-
                     }
                 }
 
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                    Thread.Sleep(1000);
+                    scriptManager.InvalidInputScript();
                     continue;
                 }
 
@@ -108,12 +108,8 @@ namespace TxtRPG
                 Console.WriteLine($"던전 공략에 실패했습니다.");
                 Console.WriteLine($"던전 공략 실패로 인해 체력이 현재 체력의 절반으로 감소합니다.");
                 Console.WriteLine($"HP : {player.Health} => HP : {player.Health / 2}");
-                Console.WriteLine($"");
-                Console.WriteLine($"잠시 후 로비로 이동 합니다.");
-
                 player.Health = player.Health / 2;
-
-                Thread.Sleep(2000);
+                scriptManager.JoinLobbyScript();
                 return;
             }
 
@@ -183,20 +179,17 @@ namespace TxtRPG
                     switch (selectNumber)
                     {
                         case 0:
-                            Console.WriteLine("잠시 후 로비로 이동합니다.");
-                            Thread.Sleep(1000);
+                            scriptManager.JoinLobbyScript();
                             return;
 
                         default:
-                            Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                            Thread.Sleep(1000);
+                            scriptManager.InvalidInputScript();
                             continue;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-                    Thread.Sleep(1000);
+                    scriptManager.InvalidInputScript();
                     continue;
                 }
             }
