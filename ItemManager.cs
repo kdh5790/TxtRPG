@@ -67,10 +67,7 @@ namespace TxtRPG
                 Console.WriteLine($"");
                 Console.WriteLine($"장착 할 장비를 선택해주세요.");
                 Console.WriteLine($"현재 장착 중인 장비를 선택 시 장비를 해제합니다.");
-                Console.WriteLine($"0. 나가기");
-                Console.WriteLine($"");
-                Console.WriteLine($"원하시는 행동을 입력해주세요");
-                Console.Write($">> ");
+                scriptManager.SelectScript();
 
                 selectNumber = 0;
 
@@ -141,10 +138,7 @@ namespace TxtRPG
                 Console.WriteLine($"");
                 Console.WriteLine($"1. 장비 구매");
                 Console.WriteLine($"2. 장비 판매");
-                Console.WriteLine($"0. 나가기");
-                Console.WriteLine($"");
-                Console.WriteLine($"원하시는 행동을 입력해주세요");
-                Console.Write($">> ");
+                scriptManager.SelectScript();
 
                 if (int.TryParse(Console.ReadLine(), out int selectNumber))
                 {
@@ -184,10 +178,7 @@ namespace TxtRPG
 
                 Console.WriteLine($"");
                 Console.WriteLine($"구매하실 장비의 번호를 입력해주세요.");
-                Console.WriteLine($"0. 나가기");
-                Console.WriteLine($"");
-                Console.WriteLine($"원하시는 행동을 입력해주세요.");
-                Console.Write($">> ");
+                scriptManager.SelectScript();
 
                 if (int.TryParse(Console.ReadLine(), out int selectNumber))
                 {
@@ -260,10 +251,7 @@ namespace TxtRPG
                 Console.WriteLine($"장비 판매 시 구매 가격의 85% 가격으로 판매하게 됩니다.");
                 Console.WriteLine($"");
                 Console.WriteLine($"판매하실 장비의 번호를 입력해주세요.");
-                Console.WriteLine($"0. 나가기");
-                Console.WriteLine($"");
-                Console.WriteLine($"원하시는 행동을 입력해주세요.");
-                Console.Write($">> ");
+                scriptManager.SelectScript();
 
                 if (int.TryParse(Console.ReadLine(), out int selectNumber))
                 {

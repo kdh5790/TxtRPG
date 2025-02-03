@@ -23,10 +23,7 @@ namespace TxtRPG
                 Console.WriteLine($"1. 쉬운 던전   | 방어력 5 이상 권장");
                 Console.WriteLine($"2. 일반 던전   | 방어력 11 이상 권장");
                 Console.WriteLine($"3. 어려운 던전 | 방어력 17 이상 권장");
-                Console.WriteLine($"0. 나가기");
-                Console.WriteLine($"");
-                Console.WriteLine($"원하시는 행동을 입력해주세요.");
-                Console.Write($">> ");
+                scriptManager.SelectScript();
 
                 if (int.TryParse(Console.ReadLine(), out int num))
                 {
@@ -165,11 +162,7 @@ namespace TxtRPG
                 Console.WriteLine($"[공략 결과]");
                 Console.WriteLine($"체력 {originalHealth} => {player.Health}");
                 Console.WriteLine($"골드 {originalGold} => {player.Gold}");
-                Console.WriteLine($"");
-                Console.WriteLine($"0. 나가기");
-                Console.WriteLine($"");
-                Console.WriteLine($"원하시는 행동을 입력해주세요.");
-                Console.Write($">> ");
+                scriptManager.SelectScript();
 
                 if (int.TryParse(Console.ReadLine(), out int selectNumber))
                 {

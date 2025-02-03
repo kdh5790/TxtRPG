@@ -20,6 +20,14 @@ namespace TxtRPG
             Thread.Sleep(1500);
         }
 
+        public void SelectScript()
+        {
+            Console.WriteLine($"0. 나가기");
+            Console.WriteLine($"");
+            Console.WriteLine($"원하시는 행동을 입력해주세요");
+            Console.Write($">> ");
+        }
+
         public void ShopScript(SelectShopType shopType)
         {
             Console.Clear();
