@@ -9,8 +9,9 @@ namespace TxtRPG
     public class ItemManager : Program
     {
         private ScriptManager scriptManager = new ScriptManager();
-        private float sellPrice = 0.85f;
+        private const float sellPrice = 0.85f;
         
+        // 인벤토리
         public void Inventory()
         {
             Console.Clear();
@@ -134,7 +135,7 @@ namespace TxtRPG
         {
             while (true)
             {
-                ShopScript(SelectShopType.Main);
+                scriptManager.ShopScript(SelectShopType.Main);
 
                 Console.WriteLine($"");
                 Console.WriteLine($"1. 장비 구매");
@@ -178,7 +179,7 @@ namespace TxtRPG
         {
             while (true)
             {
-                ShopScript(SelectShopType.Buy);
+                scriptManager.ShopScript(SelectShopType.Buy);
 
                 Console.WriteLine($"");
                 Console.WriteLine($"구매하실 장비의 번호를 입력해주세요.");
@@ -251,7 +252,7 @@ namespace TxtRPG
 
             while (true)
             {
-                ShopScript(SelectShopType.Sell);
+                scriptManager.ShopScript(SelectShopType.Sell);
 
                 Console.WriteLine($"");
                 Console.WriteLine($"");
@@ -301,92 +302,6 @@ namespace TxtRPG
                     scriptManager.InvalidInputScript();
                     continue;
                 }
-            }
-        }
-
-        // 선택한 번호에 따라 상점 스크립트 출력 (메인, 구매, 판매)
-        public void ShopScript(SelectShopType type)
-        {
-            Console.Clear();
-
-            switch (type)
-            {
-                case SelectShopType.Main:
-                    Console.WriteLine($"상점");
-                    Console.WriteLine($"던전에서 사용 가능한 장비를 구매하거나 판매 할 수 있는 상점입니다.");
-                    Console.WriteLine($"");
-                    Console.WriteLine($"[보유 골드]");
-                    Console.WriteLine($"{player.Gold} Gold");
-                    Console.WriteLine($"");
-                    Console.WriteLine($"[판매 장비 목록]");
-                    break;
-                case SelectShopType.Buy:
-                    Console.WriteLine($"장비 구매");
-                    Console.WriteLine($"던전에서 사용 가능한 장비를 구매 할 수 있습니다.");
-                    Console.WriteLine($"");
-                    Console.WriteLine($"[보유 골드]");
-                    Console.WriteLine($"{player.Gold} Gold");
-                    Console.WriteLine($"");
-                    Console.WriteLine($"[판매 장비 목록]");
-                    break;
-                case SelectShopType.Sell:
-                    Console.WriteLine($"장비 판매");
-                    Console.WriteLine($"현재 보유하고 있는 장비를 판매 할 수 있습니다.");
-                    Console.WriteLine($"");
-                    Console.WriteLine($"[보유 골드]");
-                    Console.WriteLine($"{player.Gold} Gold");
-                    Console.WriteLine($"");
-                    Console.WriteLine($"[현재 보유 중인 장비 목록]");
-                    break;
-            }
-
-            int selectNumber = 0;
-
-            if (type == SelectShopType.Main || type == SelectShopType.Buy)
-            {
-                foreach (var item in items)
-                {
-                    selectNumber++;
-                    if (item.Type == ItemType.Weapon)
-                    {
-                        Console.Write($"- ({selectNumber}){item.Name} | 공격력 +{item.Value,2}  |  {item.Info} |");
-                        if (!item.IsBuy)
-                            Console.WriteLine($" {item.Price,5} G");
-                        else
-                            Console.WriteLine($" 보유 중");
-
-                    }
-                    else
-                    {
-                        Console.Write($"- ({selectNumber}){item.Name} | 방어력 +{item.Value,2}  |  {item.Info}  |");
-                        if (!item.IsBuy)
-                            Console.WriteLine($" {item.Price,5} G");
-                        else
-                            Console.WriteLine($" 보유 중");
-                    }
-                    Console.WriteLine();
-                }
-            }
-            else
-            {
-                foreach (var item in items)
-                {
-                    if (item.IsBuy)
-                    {
-                        selectNumber++;
-                        Console.WriteLine($"- ({selectNumber}){item.Name} | 공격력 +{item.Value,2}  |  {item.Info} | {item.Price,5} G");
-                    }
-                }
-
-                if (selectNumber == 0)
-                {
-                    Console.WriteLine($"");
-                    Console.WriteLine($"현재 보유 중인 장비가 없습니다.");
-                    Console.WriteLine($"");
-                    scriptManager.JoinLobbyScript();
-                    return;
-                }
-
             }
         }
     }
