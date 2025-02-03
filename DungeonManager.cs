@@ -150,9 +150,7 @@ namespace TxtRPG
             }
         }
 
-        // originalHealth = 감소 전 체력 출력을 위한 변수
-        // originalGold = 보상 획득 전 골드 출력을 위한 변수
-        // difficultyStr = 난이도 출력을 위한 변수
+        // originalHealth = 감소 전 체력 // originalGold = 보상 획득 전 골드 // difficultyStr = 난이도 안내 문자
         // 던전 클리어 스크립트 출력
         public void DungeonClearScript(int originalHealth, int originalGold, string difficultyStr)
         {
