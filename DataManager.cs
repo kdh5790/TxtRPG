@@ -98,7 +98,16 @@ namespace TxtRPG
         // 불러온 데이터 파싱 후 게임 내 적용
         public Character DataParsing(Character loadCharacterData)
         {
-            string data = File.ReadAllText(filePath);
+            string data = "";
+
+            try
+            {
+                data = File.ReadAllText(filePath);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"세이브 데이터를 불러오는 중 오류가 발생했습니다. {e}");
+            }
             JObject playerData = JObject.Parse(data);
 
             loadCharacterData.Name = playerData["Name"].ToString();
@@ -125,7 +134,11 @@ namespace TxtRPG
                 }
             }
 
-            data = File.ReadAllText(itemFilePath);
+            try
+            {
+                data = File.ReadAllText(itemFilePath);
+            }
+            catch (Exception e) { Console.WriteLine($"세이브 데이터를 불러오는 중 오류가 발생했습니다. {e}"); }
 
             JObject itemData = JObject.Parse(data);
 

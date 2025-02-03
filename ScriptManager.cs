@@ -11,13 +11,13 @@ namespace TxtRPG
         public void InvalidInputScript()
         {
             Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
-            Thread.Sleep(1000);
+            Thread.Sleep(delay);
         }
 
         public void JoinLobbyScript()
         {
             Console.WriteLine($"잠시 후 로비로 이동합니다.");
-            Thread.Sleep(1500);
+            Thread.Sleep(delay);
         }
 
         public void SelectScript()

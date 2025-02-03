@@ -11,6 +11,9 @@ namespace TxtRPG
         static private DungeonManager dungeonManager = new DungeonManager();
         static private ItemManager itemManager = new ItemManager();
         static private ScriptManager scriptManager = new ScriptManager();
+        public const int delay = 1500; // Sleep 딜레이
+        public const int RestCost = 500; // 휴식 시 필요한 골드
+        public const int MaxHealth = 100; // 최대 HP
 
         public enum ItemType
         {
@@ -247,12 +250,12 @@ namespace TxtRPG
                         case 1:
                             Console.Clear();
                             // 플레이어 골드가 충분하고 HP가 100보다 낮다면 휴식을 취하고 로비로 이동
-                            if (player.Gold >= 500 && player.Health < 100)
+                            if (player.Gold >= RestCost && player.Health < MaxHealth)
                             {
                                 int originalHealth = player.Health;
                                 int originalGold = player.Gold;
-                                player.Health = 100;
-                                player.Gold -= 500;
+                                player.Health = MaxHealth;
+                                player.Gold -= RestCost;
 
 
                                 Console.WriteLine($"충분한 휴식을 취했습니다.");
@@ -266,7 +269,7 @@ namespace TxtRPG
                             }
 
                             // 플레이어 골드가 충분하고 HP가 100이거나 그보다 크다면 휴식을 취하지 않고 로비로 이동
-                            else if (player.Gold >= 500 || player.Health >= 100)
+                            else if (player.Gold >= RestCost || player.Health >= MaxHealth)
                             {
                                 Console.WriteLine($"이미 체력이 최대치로 회복되어 있습니다.");
                                 Console.WriteLine($"휴식을 취하지 않습니다.");
