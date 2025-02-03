@@ -53,8 +53,8 @@ namespace TxtRPG
             public int Health { get { return health; }  set { health = Math.Max(0, value); } }
             public int Gold { get { return gold; } set { gold = Math.Max(0, value); } }
             public int ClearCount { get { return clearCount; } set { clearCount = value; } }
-            public Item EquipWeapon { get { return new Item(equipWeapon); } set { new Item(value); } }
-            public Item EquipArmor { get { return new Item(equipArmor); } set { new Item(value); } }
+            public Item EquipWeapon { get { return new Item(equipWeapon); } set { equipWeapon = new Item(value); } }
+            public Item EquipArmor { get { return new Item(equipArmor); } set { equipArmor = new Item(value); } }
         }
 
         public class Item
@@ -195,7 +195,7 @@ namespace TxtRPG
                 if (player.EquipArmor.Value == 0)
                     Console.WriteLine($"방어력 : {player.Defence}");
                 else
-                    Console.WriteLine($"방어력 : {player.Defence} + {player.EquipArmor.Value}({player.EquipArmor.Name})");
+                    Console.WriteLine($"방어력 : {player.Defence} + {player.EquipArmor.Value}(방어구 방어력)");
 
                 Console.WriteLine($"체력 : {player.Health}");
                 Console.WriteLine($"소지 골드 : {player.Gold}");

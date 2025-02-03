@@ -120,6 +120,7 @@ namespace TxtRPG
                         Console.WriteLine($"장비 장착 및 해제를 완료했습니다.");
                         Console.WriteLine($"");
                         scriptManager.JoinLobbyScript();
+                        return;
                     }
                 }
                 else

@@ -1,12 +1,1 @@
-{
-  "Name": "fewfew",
-  "Job": "전사",
-  "Level": 1,
-  "Attack": 10.0,
-  "Defence": 5,
-  "Health": 100,
-  "Gold": 1500,
-  "ClearCount": 0,
-  "EquipWeapon": " ",
-  "EquipArmor": " "
-}
+{"Name":"fewfew","Job":"전사","Level":3,"Attack":11.5,"Defence":10,"Health":7,"Gold":480,"ClearCount":0,"EquipWeapon":{"Name":" ","Info":" ","Type":0,"Value":0,"Price":0,"IsBuy":false},"EquipArmor":{"Name":" ","Info":" ","Type":0,"Value":0,"Price":0,"IsBuy":false}}

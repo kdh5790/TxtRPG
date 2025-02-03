@@ -38,21 +38,8 @@ namespace TxtRPG
             if (!folder.Exists)
                 folder.Create();
 
-            // 플레이어 정보 저장
-            JObject data = new JObject(
-                new JProperty("Name", characterData.Name),
-                new JProperty("Job", characterData.Job),
-                new JProperty("Level", characterData.Level),
-                new JProperty("Attack", characterData.Attack),
-                new JProperty("Defence", characterData.Defence),
-                new JProperty("Health", characterData.Health),
-                new JProperty("Gold", characterData.Gold),
-                new JProperty("ClearCount", characterData.ClearCount),
-                new JProperty("EquipWeapon", characterData.EquipWeapon.Name),
-                new JProperty("EquipArmor", characterData.EquipArmor.Name)
-                );
-
-            File.WriteAllText(filePath, data.ToString());
+            string playerDataString = JsonConvert.SerializeObject(characterData);
+            File.WriteAllText(filePath, playerDataString);
 
             // 아이템 보유 정보 저장
             Dictionary<string, bool> itemsDict = new Dictionary<string, bool>();
@@ -61,9 +48,8 @@ namespace TxtRPG
             {
                 itemsDict.Add(items[i].Name, items[i].IsBuy);
             }
-
-            string json = JsonConvert.SerializeObject(itemsDict);
-            File.WriteAllText(itemFilePath, json);
+            string ItemDataString = JsonConvert.SerializeObject(itemsDict);
+            File.WriteAllText(itemFilePath, ItemDataString);
         }
 
         // 세이브 파일 불러오기
@@ -118,7 +104,7 @@ namespace TxtRPG
             loadCharacterData.Name = playerData["Name"].ToString();
             loadCharacterData.Job = playerData["Job"].ToString();
             loadCharacterData.Level = int.Parse(playerData["Level"].ToString());
-            loadCharacterData.Attack = int.Parse(playerData["Attack"].ToString());
+            loadCharacterData.Attack = float.Parse(playerData["Attack"].ToString());
             loadCharacterData.Defence = int.Parse(playerData["Defence"].ToString());
             loadCharacterData.Health = int.Parse(playerData["Health"].ToString());
             loadCharacterData.Gold = int.Parse(playerData["Gold"].ToString());
