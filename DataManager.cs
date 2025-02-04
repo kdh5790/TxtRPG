@@ -35,17 +35,20 @@ namespace TxtRPG
         {
             DirectoryInfo folder = new DirectoryInfo(folderPath);
 
+            // 폴더 없다면 생성
             if (!folder.Exists)
                 folder.Create();
             try
             {
+                // 데이터 직렬화 후 스트링으로 반환
                 string playerDataString = JsonConvert.SerializeObject(characterData);
+                // 파일에 스트링 저장
                 File.WriteAllText(filePath, playerDataString);
             }
             // 오류 발생 시 로비로 이동
             catch { Console.WriteLine("플레이어 데이터를 저장하는 도중 오류가 발생했습니다. 로비로 돌아갑니다."); scriptManager.JoinLobbyScript(); }
 
-            // 아이템 보유 정보 저장
+            // 아이템 보유 정보 딕셔너리(아이템 이름, 보유 여부)로 저장 
             Dictionary<string, bool> itemsDict = new Dictionary<string, bool>();
 
             for (int i = 0; i < items.Count; i++)
@@ -112,14 +115,18 @@ namespace TxtRPG
 
             try
             {
+                // 데이터 => 스트링으로 변환
                 data = File.ReadAllText(filePath);
             }
             catch (Exception e)
             {
                 Console.WriteLine($"세이브 데이터를 불러오는 중 오류가 발생했습니다. {e}");
             }
+
+            // 스트링 => JObject로 변환
             JObject playerData = JObject.Parse(data);
 
+            // 데이터 적용
             loadCharacterData.Name = playerData["Name"].ToString();
             loadCharacterData.Job = playerData["Job"].ToString();
             loadCharacterData.Level = int.Parse(playerData["Level"].ToString());
@@ -132,6 +139,7 @@ namespace TxtRPG
             string weaponName = playerData["EquipWeapon"].ToString();
             string armorName = playerData["EquipArmor"].ToString();
 
+            // 장착 중인 장비 확인
             for (int i = 0; i < items.Count; i++)
             {
                 if (items[i].Name == weaponName)
