@@ -185,16 +185,11 @@ namespace TxtRPG
                 Console.WriteLine($"레벨 : {player.Level}");
                 Console.WriteLine($"직업 : {player.Job}");
 
-                // 장비 장착 중인지 확인 후 해당 스탯 적용
+                // 장비 장착 중인지 확인 후 해당 스탯 적용(F1 : 소수점 자르기)
                 if (player.EquipWeapon.Value == 0)
-                {
                     Console.WriteLine($"공격력 : {player.Attack:F1}");
-                }
                 else
-                {
                     Console.WriteLine($"공격력 : {player.Attack:F1} + {player.EquipWeapon.Value}(무기 공격력)");
-
-                }
 
                 if (player.EquipArmor.Value == 0)
                     Console.WriteLine($"방어력 : {player.Defence}");
@@ -209,6 +204,7 @@ namespace TxtRPG
                 {
                     switch (selectNumber)
                     {
+                        // 로비로 이동
                         case 0:
                             return;
                         default:

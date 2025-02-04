@@ -94,7 +94,7 @@ namespace TxtRPG
             Console.WriteLine($"");
             Console.WriteLine($"ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 
-            Thread.Sleep(1500);
+            Thread.Sleep(delay);
 
             Console.Clear();
 
@@ -115,10 +115,10 @@ namespace TxtRPG
             {
                 // 체력 감소량 랜덤값 가져오기
                 // 권장 방어력보다 높을 시 : (20 - (플레이어 방어력 - 권장 방어력)) ~ (35 - (플레이어 방어력 - 권장 방어력))
-                // 권장 방어력보다 높을 시 : (20 - (권장 방어력 - 플레이어 방어력)) ~ (35 - (권장 방어력 - 플레이어 방어력))
                 if (player.Defence >= (int)difficulty)
                     rnd = random.Next(20 - (player.Defence - (int)difficulty), 36 - (player.Defence - (int)difficulty));
 
+                // 권장 방어력보다 낮을 시 : (20 - (권장 방어력 - 플레이어 방어력)) ~ (35 - (권장 방어력 - 플레이어 방어력))
                 else if (player.Defence < (int)difficulty)
                     rnd = random.Next(20 - ((int)difficulty - player.Defence), 36 - ((int)difficulty - player.Defence));
 
@@ -139,6 +139,7 @@ namespace TxtRPG
 
                 player.ClearCount += 1;
 
+                // 플레이어 레벨이 5보다 낮고 클리어 횟수가 레벨과 같다면 레벨업
                 if (player.Level < 5 && player.ClearCount == player.Level)
                 {
                     LevelUp();

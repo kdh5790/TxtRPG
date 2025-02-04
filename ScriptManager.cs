@@ -32,6 +32,7 @@ namespace TxtRPG
         {
             Console.Clear();
 
+            // 현재 입장한 상점 상태에 따라 텍스트 출력
             switch (shopType)
             {
                 case SelectShopType.Main:
@@ -65,11 +66,13 @@ namespace TxtRPG
 
             int selectNumber = 0;
 
+            // 상점 타입이 메인 or 구매 일 때
             if (shopType == SelectShopType.Main || shopType == SelectShopType.Buy)
             {
                 foreach (var item in items)
                 {
                     selectNumber++;
+                    // 무기 스크립트 출력 + 보유중이라면 가격 대신 보유중 텍스트 표시
                     if (item.Type == ItemType.Weapon)
                     {
                         Console.Write($"- ({selectNumber}){item.Name} | 공격력 +{item.Value,2}  |  {item.Info} |");
@@ -79,6 +82,7 @@ namespace TxtRPG
                             Console.WriteLine($" 보유 중");
                     }
                     else
+                    // 방어구 스크립트 출력 + 보유중이라면 가격 대신 보유중 텍스트 표시
                     {
                         Console.Write($"- ({selectNumber}){item.Name} | 방어력 +{item.Value,2}  |  {item.Info}  |");
                         if (!item.IsBuy)
@@ -89,10 +93,12 @@ namespace TxtRPG
                     Console.WriteLine();
                 }
             }
+            // 상점 타입이 판매 일 때
             else
             {
                 foreach (var item in items)
                 {
+                    // 보유 중인 장비 스크립트 출력
                     if (item.IsBuy)
                     {
                         selectNumber++;
@@ -100,6 +106,7 @@ namespace TxtRPG
                     }
                 }
 
+                // 보유 중인 장비가 없을 때
                 if (selectNumber == 0)
                 {
                     Console.WriteLine($"");
