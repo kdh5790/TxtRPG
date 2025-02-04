@@ -139,7 +139,7 @@ namespace TxtRPG
 
                 player.ClearCount += 1;
 
-                if (player.Level < MaxLevel && player.ClearCount == player.Level)
+                if (player.Level < 5 && player.ClearCount == player.Level)
                 {
                     LevelUp();
                 }
