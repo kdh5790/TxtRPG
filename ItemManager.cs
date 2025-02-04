@@ -28,28 +28,30 @@ namespace TxtRPG
                 List<Item> tempItemList = new List<Item>();
 
                 // 보유 중인 장비 표시 및 리스트에 추가
-                foreach (var i in items)
+                foreach (var item in items)
                 {
-                    if (i.IsBuy)
+                    // 보유중인 장비라면
+                    if (item.IsBuy)
                     {
                         selectNumber++;
 
-                        if (i.Type == ItemType.Weapon)
+                        // 장착 중인지 확인 후 텍스트 출력
+                        if (item.Type == ItemType.Weapon)
                         {
-                            if (i.Name == player.EquipWeapon.Name)
-                                Console.WriteLine($"- ({selectNumber})[E]{i.Name} | 공격력 +{i.Value,2}  |  {i.Info} ");
+                            if (item.Name == player.EquipWeapon.Name)
+                                Console.WriteLine($"- ({selectNumber})[E]{item.Name} | 공격력 +{item.Value,2}  |  {item.Info} ");
                             else
-                                Console.WriteLine($"- ({selectNumber})   {i.Name} | 공격력 +{i.Value,2}  |  {i.Info} ");
+                                Console.WriteLine($"- ({selectNumber})   {item.Name} | 공격력 +{item.Value,2}  |  {item.Info} ");
 
                         }
-                        else if (i.Type == ItemType.Armor)
+                        else if (item.Type == ItemType.Armor)
                         {
-                            if (i.Name == player.EquipArmor.Name)
-                                Console.WriteLine($"- ({selectNumber})[E]{i.Name} | 방어력 +{i.Value,2}  |  {i.Info} ");
+                            if (item.Name == player.EquipArmor.Name)
+                                Console.WriteLine($"- ({selectNumber})[E]{item.Name} | 방어력 +{item.Value,2}  |  {item.Info} ");
                             else
-                                Console.WriteLine($"- ({selectNumber})   {i.Name} | 방어력 +{i.Value,2}  |  {i.Info} ");
+                                Console.WriteLine($"- ({selectNumber})   {item.Name} | 방어력 +{item.Value,2}  |  {item.Info} ");
                         }
-                        tempItemList.Add(i);
+                        tempItemList.Add(item);
                     }
                 }
 
@@ -71,17 +73,20 @@ namespace TxtRPG
 
                 selectNumber = 0;
 
+                // 장착, 해제 할 장비 선택
                 if (int.TryParse(Console.ReadLine(), out selectNumber))
                 {
                     if (selectNumber == 0)
                         MainLobby();
 
+                    // 입력 받은 숫자가 현재 선택 가능한 숫자보다 크다면 다시 입력 받기
                     else if (selectNumber > tempItemList.Count)
                     {
                         scriptManager.InvalidInputScript();
                         continue;
                     }
 
+                    // 입력 받은 숫자가 유효하다면
                     else
                     {
                         // 선택한 장비에 해당하는 인덱스 찾기
@@ -144,13 +149,16 @@ namespace TxtRPG
                 {
                     switch (selectNumber)
                     {
+                        // 로비로 이동
                         case 0:
                             return;
-
+                        
+                        // 장비 구매로 이동
                         case 1:
                             BuyItem();
                             break;
 
+                        // 장비 판매로 이동
                         case 2:
                             SellItem();
                             break;
@@ -191,6 +199,7 @@ namespace TxtRPG
                         continue;
                     }
 
+                    // 이미 구매한 장비 일 때
                     if (items[selectNumber - 1].IsBuy)
                     {
                         Console.WriteLine($"이미 구매한 아이템입니다. 다시 입력해주세요.");
@@ -198,6 +207,7 @@ namespace TxtRPG
                         continue;
                     }
 
+                    // 보유하지 않은 장비 + 골드가 충분 할 때
                     if (items[selectNumber - 1].Price <= player.Gold)
                     {
                         Console.Clear();
@@ -211,6 +221,8 @@ namespace TxtRPG
                         scriptManager.JoinLobbyScript();
                         return;
                     }
+                    
+                    // 골드가 부족 할 때
                     else
                     {
                         Console.WriteLine($"");

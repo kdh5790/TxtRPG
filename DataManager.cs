@@ -37,9 +37,13 @@ namespace TxtRPG
 
             if (!folder.Exists)
                 folder.Create();
-
-            string playerDataString = JsonConvert.SerializeObject(characterData);
-            File.WriteAllText(filePath, playerDataString);
+            try
+            {
+                string playerDataString = JsonConvert.SerializeObject(characterData);
+                File.WriteAllText(filePath, playerDataString);
+            }
+            // 오류 발생 시 로비로 이동
+            catch { Console.WriteLine("플레이어 데이터를 저장하는 도중 오류가 발생했습니다. 로비로 돌아갑니다."); scriptManager.JoinLobbyScript(); }
 
             // 아이템 보유 정보 저장
             Dictionary<string, bool> itemsDict = new Dictionary<string, bool>();
@@ -48,8 +52,14 @@ namespace TxtRPG
             {
                 itemsDict.Add(items[i].Name, items[i].IsBuy);
             }
-            string ItemDataString = JsonConvert.SerializeObject(itemsDict);
-            File.WriteAllText(itemFilePath, ItemDataString);
+
+            try
+            {
+                string ItemDataString = JsonConvert.SerializeObject(itemsDict);
+                File.WriteAllText(itemFilePath, ItemDataString);
+            }
+            // 오류 발생시 로비로 이동
+            catch { Console.WriteLine("아이템 데이터를 저장하는 도중 오류가 발생했습니다. 로비로 돌아갑니다."); scriptManager.JoinLobbyScript(); }
         }
 
         // 세이브 파일 불러오기
@@ -83,7 +93,7 @@ namespace TxtRPG
                                 continue;
                         }
                     }
-                    
+
                     else
                     {
                         scriptManager.InvalidInputScript();
