@@ -14,6 +14,7 @@ namespace TxtRPG
         public const int delay = 1500; // Sleep 딜레이
         public const int RestCost = 500; // 휴식 시 필요한 골드
         public const int MaxHealth = 100; // 최대 HP
+        public const int MaxLevel = 5;
 
         public enum ItemType
         {
